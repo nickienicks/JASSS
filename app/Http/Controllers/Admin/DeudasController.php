@@ -136,9 +136,9 @@ class DeudasController extends Controller
         $deuda = Deuda::latest('id')->first();
        /*  $contacts = Persona::with('deudas')->get(); */
         $contacts= Persona::with(['deudas' => function($query) {
-            $query->orderBy('fecha');
+            $query->where('monto','>','0')->orderBy('fecha');
         }])->get();
-        $pdf = PDF::loadView('libro.pdf', compact('contacts', 'deuda', 'final','now'));
+        $pdf = PDF::loadView('libro.pdf', compact('contacts', 'deuda','now'));
 
         /* return $contacts3; */
         return $pdf->stream();
