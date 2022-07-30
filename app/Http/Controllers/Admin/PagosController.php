@@ -139,7 +139,9 @@ class PagosController extends Controller
         
         $now = Carbon::now()->format('Y-M-d');
         $deuda = Deuda::latest('id')->first();
-        $contacts = Persona::where('id',$persona->id)->with('deudas')->get();
+        $contacts= Persona::where('id',$persona->id)->with(['deudas' => function($query) {
+            $query->where('monto','>','0')->orderBy('fecha');
+        }])->get();
      
         $final = Persona::where('id',$persona->id)->with('deudas')->get();
         $pdf = PDF::loadView('libro.pdf', compact('contacts', 'deuda', 'final','now'));
