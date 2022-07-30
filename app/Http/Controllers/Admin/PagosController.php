@@ -126,12 +126,12 @@ class PagosController extends Controller
 
     public function view(Persona $persona)
     {
-        
+        $deudass= Deuda::where('persona_id',$persona->id)->orderBy('fecha')->get();
         // $suma = Deuda::sum(intval('monto'    ))->groupBy('fecha')->get();
         $suma = $persona->deudas->sum('monto');
         return Inertia::render("Admin/Pagos/View", [
             'persona' => $persona,
-            'deudas' => $persona->deudas,
+            'deudas' => $deudass,
             'suma' => $suma,
         ]);
     }

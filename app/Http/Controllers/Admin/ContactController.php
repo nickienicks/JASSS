@@ -7,6 +7,8 @@ use App\Models\Persona;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
+use App\Models\Deuda;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class ContactController extends Controller
@@ -121,13 +123,39 @@ class ContactController extends Controller
          return Redirect::route('admin.contacts.index')->with('flash.banner', 'Usuario Eliminado.')->with('flash.bannerStyle', 'danger');
     }
 
+    public function storedeudas()
+    {
+          Request::validate([
+           'fecha' => 'required',
+           'monto' => "required",
+           'medida_ant' => "required",
+           'medida_act' => "required",
+        ]);
+
+        
+
+            Deuda::create([
+           'fecha'=> Request::input('fecha'),  
+           'monto'=> Request::input('monto'),
+           'type'=>false,
+           'medida_ant'=> Request::input('medida_ant'),
+           'medida_act'=> Request::input('medida_act'),
+           'persona_id' => Request::input('persona_id'),
+        //    'user_id' => auth()->id(),
+           
+        ]);
+        return Redirect::route("admin.contacts.show")->with('flash.banner', 'Deuda Asignada');
+    }
+    
 
     public function show()
     {
 
         $persona = Persona::latest('id')->first();
+        $deudass= DB::table('deudas')->where('persona_id',$persona->id)->latest('id')->first();
         return Inertia::render('Admin/Users/UserDeuda', [
             'persona' => $persona,
+            'deudass'=>$deudass,
         ]);
     }
 }

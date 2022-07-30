@@ -86,7 +86,6 @@
                                             class="mt-1 block w-full"
                                             v-model="form.medida_ant"
                                             autofocus
-                                            readOnly
                                             autocomplete="medida_ant"
                                             placeholder="medidada anterior..."
                                         />
@@ -148,8 +147,6 @@
                 </section>
             </div>
         </div>
-
-        <pre>{{ calcularMonto }}</pre>
        
     </admin-layout>
 </template>
@@ -206,7 +203,10 @@ const calcularMonto = computed(() => {
 function storeDeuda() {
     form.post(`/admin/deudas/${props.persona.id}/store`, {
         preserveScroll: true,
-        preserveState: true,
+        onSuccess:()=>{
+            form.reset('fecha','monto','medida_act','medida_ant');
+            form.medida_ant = props.final.medida_act; 
+            },
     });
 }
 </script>

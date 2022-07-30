@@ -148,7 +148,6 @@
                 </section>
             </div>
         </div>
-        <pre>{{form.medida_ant}}</pre>
     </admin-layout>
 </template>
 

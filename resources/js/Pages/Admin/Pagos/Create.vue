@@ -137,7 +137,6 @@
                 </section>
             </div>
         </div>
-        {{ now }}
     </admin-layout>
 </template>
 

@@ -9,7 +9,7 @@
         :class="
             sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'
         "
-        class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform bg-gray-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0"
+        class="fixed z-30 inset-y-0 left-0 w-60 transition duration-300 transform bg-gray-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0"
     >
         <div class="flex items-center justify-center mt-8">
             <div class="flex items-center">
@@ -34,7 +34,7 @@
                 </svg>
 
                 <span class="text-white text-2xl mx-2 font-semibold"
-                    >Dashboard</span
+                    >JASS</span
                 >
             </div>
         </div>
@@ -103,27 +103,31 @@
                     <DatabaseIcon class="h-6 w-6" />
                 </template>
             </Prueba>
-            <!-- <Prueba
-                :href="route('logout')"
-                label="Cerrar"
-                method="post"
-            >
-                <template #logo>
-                    <DatabaseIcon class="h-6 w-6" />
-                </template>
-            </Prueba> -->
-            <!-- <Link href="/logout">
-            </Link> -->
             
-            <!-- <button @click="logout">Logout</button> -->
-                <!-- <form @submit.prevent="logout">
-                    <button  @click="logout" type="submit">
-                        Log Out
-                    </button>
-                        
-                    
-                </form> -->
+            <div class=" w-full">
+                <button class="absolute bottom-0 w-full  flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-500 hover:bg-opacity-25 hover:text-gray-100" @click="modalOpen =true ">
+                <DatabaseIcon class="h-6 w-6" />Cerrar  </button>
+            </div>
            
+            
+            <DialogModal :show="modalOpen">
+                <template v-slot:title>
+                    <h1>Cerrar sesión</h1>
+                </template>
+                <template v-slot:content>
+                    <p>¿Seguro que deseas cerrar sesión?</p>
+                </template>
+                <template v-slot:footer>
+                    <button @click="modalOpen=false" class="bg-blue-500 mr-4 py-2 px-4 rounded shadow hover:shadow-xl hover:bg-blue-300">
+                        Cancelar
+                    </button> 
+                     <button >
+                     <Link href="/logout" method="post" class="bg-red-500 py-2 px-4 rounded shadow hover:shadow-xl hover:bg-red-300">Cerrar Sesión</Link>
+                        
+                    </button>   
+                </template>
+
+            </DialogModal>
             
                
         </nav>
@@ -134,6 +138,8 @@
 import Prueba from "../Components/Prueba.vue";
 import JetDropdown from '@/Jetstream/Dropdown.vue';
 import JetDropdownLink from '@/Jetstream/DropdownLink.vue';
+import DialogModal from "../Jetstream/DialogModal.vue";
+import Button from "../Jetstream/Button.vue";
 
 import { Link } from "@inertiajs/inertia-vue3";
 
@@ -147,8 +153,14 @@ import {
     PuzzleIcon,
 } from "@heroicons/vue/outline";
 
+const modalOpen= ref(false);
+
 const logout = () => {
     Inertia.post(route('logout'));
+};
+
+const dialogout=()=>{
+    
 };
 const sidebarOpen = ref(false);
 </script>

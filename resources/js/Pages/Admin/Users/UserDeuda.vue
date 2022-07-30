@@ -149,16 +149,8 @@
                                         <jet-label
                                             for="medida_ant"
                                             value="medida_ant"
-                                        /><template v-if="persona.deudas == 0">
-                                            <jet-input
-                                                id="medida_ant"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.cero"
-                                                autofocus
-                                                autocomplete="medida_ant"
-                                                placeholder="medidada anterior..." /></template
-                                        ><template v-else>
+                                        />
+                                        
                                             <jet-input
                                                 id="medida_ant"
                                                 type="text"
@@ -168,7 +160,6 @@
                                                 autocomplete="medida_ant"
                                                 placeholder="medidada anterior..."
                                             />
-                                        </template>
                                         <div
                                             class="text-sm text-red-400"
                                             v-if="form.errors.medida_ant"
@@ -227,7 +218,6 @@
                 </section>
             </div>
         </div>
-        <pre>{{calcularMonto}}aasdasdas</pre>
     </admin-layout>
 </template>
 
@@ -240,8 +230,10 @@ import JetButton from "@/Jetstream/Button.vue";
 import JetInput from "@/Jetstream/Input.vue";
 import JetLabel from "@/Jetstream/Label.vue";
 import { useForm, Link } from "@inertiajs/inertia-vue3";
+import { objectExpression } from "@babel/types";
 const props = defineProps({
     persona: Object,
+    deudass :Object,
 });
 const form = useForm({
     firstname: props.persona.first_name,
@@ -255,11 +247,19 @@ const form = useForm({
     medida_act: "",
     persona_id: props.persona.id,
 });
+/* const medidaant = computed(()=>{
+    if(props.deudass === null){
+            form.medida_ant= ""
+        }else{
+            form.medida_ant= props.deudass.medida_ant;
+            
+        }
+}) */
 const calcularMonto = computed(() => {
     let montoTotal=0 ;
     let montoResta=0 ;
     try {
-        let resta = parseInt(form.medida_act) - form.medida_ant;
+        let resta = parseInt(form.medida_act) - parseInt(form.medida_ant);
         if (resta <= 7) {
             montoTotal = resta * 2;
         } else {
@@ -280,10 +280,22 @@ const calcularMonto = computed(() => {
         console.log(error);
     }
 });
+console.log(props.deudass);
+
+ /* watch(form.medida_ant, (newValue, oldValue) => {
+    if (props.deudass.length === null){
+        console.log('aaa');
+        form.medida_ant = props.deudass.medida_act;
+    }
+})   */
+
+
 function storeDeuda() {
-    form.post(`/admin/deudas/${props.persona.id}/store`, {
+    form.post(`/admin/usuarios/${props.persona.id}/storedeudas`, {
         preserveScroll: true,
-        preserveState: true,
+        onSuccess:()=>{form.reset('fecha','monto','medida_act','medida_ant');
+        form.medida_ant= props.deudass.medida_act;},
+        
     });
 }
 </script>

@@ -324,7 +324,6 @@
                 </div>
             </div>
         </div>
-        <pre>{{montoPagado}}</pre>
     </admin-layout>
 </template>
 

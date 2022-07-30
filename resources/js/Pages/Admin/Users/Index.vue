@@ -110,7 +110,21 @@
                                             >
                                                 Editar
                                             </Link>
-                                            <Link
+                                            
+                                            <Button @click="modalOpen = true" class="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-lg text-white">Eliminar</Button>
+                                            <DialogModal :show="modalOpen">
+                                                <template v-slot:title>
+                                                    <h1>Eliminar Usuario</h1>
+                                                </template>
+                                                <template v-slot:content>
+                                                    <p>¿Seguro que deseas eliminar este Usuario?</p>
+                                                </template>
+                                                <template v-slot:footer>
+                                                    <button @click="modalOpen=false" class="bg-blue-500 mr-4 py-2 px-4 rounded shadow hover:shadow-xl hover:bg-blue-300">
+                                                        Cancelar
+                                                    </button> 
+                                                    <button >
+                                                    <Link
                                                 :href="
                                                     route(
                                                         'admin.contacts.destroy',
@@ -124,6 +138,11 @@
                                             >
                                                 Eliminar
                                             </Link>
+                                                        
+                                                    </button>   
+                                                </template>
+
+                                            </DialogModal>
                                         </div>
                                     </TableData>
                                 </TableRow>
@@ -146,6 +165,7 @@ import Table from "../../../Components/Table.vue";
 import TableData from "../../../Components/TableData.vue";
 import TableHead from "../../../Components/TableHead.vue";
 import TableRow from "../../../Components/TableRow.vue";
+import DialogModal from "../../../Jetstream/DialogModal.vue";
 
 const props = defineProps({
     contacts: Object,
@@ -154,6 +174,7 @@ const props = defineProps({
 
 const search = ref(props.filters.search);
 const perPage = ref("");
+const modalOpen=ref(false);
 
 watch(search, (value) => {
     Inertia.get(

@@ -93,7 +93,6 @@
                 </section>
             </div>
         </div>
-        <pre>{{lastdeudass}}</pre>
 
         
     </admin-layout>

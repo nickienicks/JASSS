@@ -19,6 +19,7 @@ Route::resource('usuarios', ContactController::class, ['except' => [
 Route::get('usuarios/{persona:id}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
 Route::put('usuarios/{persona:id}', [ContactController::class, 'update'])->name('contacts.update');
 Route::get('usuarios/show', [ContactController::class, 'show'])->name('contacts.show');
+Route::post("usuarios/{persona:id}/storedeudas", [ContactController::class, "storedeudas"])->name("contacts.storedeudas");
 Route::delete('usuarios/{persona:id}/destroy', [ContactController::class, 'destroy'])->name('contacts.destroy');
 //Deudas
 Route::get("deudas", [DeudasController::class, "index"])->name("deudas.index");

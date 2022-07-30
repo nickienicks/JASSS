@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Barryvdh\DomPDF\Facade\PDF;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DeudasController extends Controller
 {
@@ -54,8 +55,11 @@ class DeudasController extends Controller
         ]);
     }
 
-      public function store()
-    {
+      public function store(Persona $persona)
+    {       
+        
+       /*  $persona=Persona::where('id',$deuda->persona_id)->get(); */
+
           Request::validate([
            'fecha' => 'required',
            'monto' => "required",
@@ -76,7 +80,7 @@ class DeudasController extends Controller
            
         ]);
 
-        return Redirect::route("admin.deudas.index")->with('flash.banner', 'Deuda Asignada');
+        return Redirect::route("admin.deudas.create", $persona->id)->with('flash.banner', 'Deuda Asignada');
 
     }public function edit(Persona $persona, Deuda $deuda)
     {
@@ -115,10 +119,11 @@ class DeudasController extends Controller
 
     public function view(Persona $persona)
     {
-        
+        $deudass= Deuda::where('persona_id',$persona->id)->orderBy('fecha')->get();
+       
         return Inertia::render("Admin/Deudas/View", [
             'persona' => $persona,
-            'deudas' => $persona->deudas,
+            'deudas' => $deudass,
             'pagos' => $persona->pagos,
             
         ]);
@@ -129,9 +134,14 @@ class DeudasController extends Controller
         
         $now = Carbon::now()->format('Y-M-d');
         $deuda = Deuda::latest('id')->first();
-        $contacts = Persona::with('deudas')->get();
-        $final = Persona::with('deudas')->get();
+       /*  $contacts = Persona::with('deudas')->get(); */
+        $contacts= Persona::with(['deudas' => function($query) {
+            $query->orderBy('fecha');
+        }])->get();
         $pdf = PDF::loadView('libro.pdf', compact('contacts', 'deuda', 'final','now'));
+
+        /* return $contacts3; */
         return $pdf->stream();
+        
     }
 }
