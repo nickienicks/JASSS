@@ -46,7 +46,7 @@ class DeudasController extends Controller
     {
         
         $final = $persona->deudas->last();
-         
+        
         
         return Inertia::render("Admin/Deudas/Create", [
             'persona' => $persona,
@@ -119,7 +119,7 @@ class DeudasController extends Controller
 
     public function view(Persona $persona)
     {
-        $deudass= Deuda::where('persona_id',$persona->id)->orderBy('fecha')->get();
+        $deudass= Deuda::where('persona_id',$persona->id)->where('monto','>','0')->orderBy('fecha')->get();
        
         return Inertia::render("Admin/Deudas/View", [
             'persona' => $persona,

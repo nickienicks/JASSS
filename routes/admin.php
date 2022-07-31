@@ -21,6 +21,7 @@ Route::put('usuarios/{persona:id}', [ContactController::class, 'update'])->name(
 Route::get('usuarios/show', [ContactController::class, 'show'])->name('contacts.show');
 Route::post("usuarios/{persona:id}/storedeudas", [ContactController::class, "storedeudas"])->name("contacts.storedeudas");
 Route::delete('usuarios/{persona:id}/destroy', [ContactController::class, 'destroy'])->name('contacts.destroy');
+Route::get("usuarios/{persona:id}/pdf", [ContactController::class, "usePDF"])->name("contacts.pdf");
 //Deudas
 Route::get("deudas", [DeudasController::class, "index"])->name("deudas.index");
 Route::get("deudas/{persona:id}/view", [DeudasController::class, "view"])->name("deudas.view");

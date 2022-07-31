@@ -125,24 +125,33 @@
                                                     </button> 
                                                     <button >
                                                     <Link
-                                                :href="
-                                                    route(
-                                                        'admin.contacts.destroy',
-                                                        contact.id
-                                                    )
-                                                "
-                                                method="delete"
-                                                as="button"
-                                                type="button"
-                                                class="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-lg text-white"
-                                            >
-                                                Eliminar
-                                            </Link>
+                                                        :href="
+                                                            route(
+                                                                'admin.contacts.destroy',
+                                                                contact.id
+                                                            )
+                                                        "
+                                                        method="delete"
+                                                        as="button"
+                                                        type="button"
+                                                        class="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-lg text-white"
+                                                    >
+                                                        Eliminar
+                                                    </Link>
                                                         
-                                                    </button>   
+                                                    </button>
+                                                    
                                                 </template>
 
                                             </DialogModal>
+                                             
+                                            <a :href="
+                                                    route('admin.contacts.pdf', 
+                                                        contact.id
+                                                     )
+                                                "
+                                                target="_blank"
+                                             class="bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded-lg text-white"> Factura</a>
                                         </div>
                                     </TableData>
                                 </TableRow>

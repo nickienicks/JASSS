@@ -10,6 +10,7 @@ use Inertia\Inertia;
 use App\Models\Deuda;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class ContactController extends Controller
 {
@@ -157,5 +158,17 @@ class ContactController extends Controller
             'persona' => $persona,
             'deudass'=>$deudass,
         ]);
+    }
+    public function usePDF(Persona $persona){
+
+        $now = Carbon::now()->format('Y-M-d');
+        $deuda = Deuda::latest('id')->first();
+        $contacts= Persona::where('id',$persona->id)->with(['deudas' => function($query) {
+            $query->where('monto','>','0')->orderBy('fecha');
+        }])->get();
+     
+        $final = Persona::where('id',$persona->id)->with('deudas')->get();
+        $pdf = PDF::loadView('libro.pdf', compact('contacts', 'deuda', 'final','now'));
+        return $pdf->stream();
     }
 }

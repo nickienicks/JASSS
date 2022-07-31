@@ -178,7 +178,7 @@ const calcularMonto = computed(() => {
     let montoTotal;
     let montoResta ;
     try {
-        let resta = parseInt(form.medida_act) - props.final.medida_act;
+        let resta = parseInt(form.medida_act) - form.medida_ant;
         if (resta <= 7) {
             montoTotal = resta * 2;
         } else {

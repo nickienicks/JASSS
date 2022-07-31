@@ -39005,7 +39005,7 @@ __webpack_require__.r(__webpack_exports__);
       var montoResta;
 
       try {
-        var resta = parseInt(form.medida_act) - props["final"].medida_act;
+        var resta = parseInt(form.medida_act) - form.medida_ant;
 
         if (resta <= 7) {
           montoTotal = resta * 2;
@@ -48026,6 +48026,7 @@ var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Eliminar ");
 
+var _hoisted_30 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
 
@@ -48229,7 +48230,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
                     }, 1032
                     /* PROPS, DYNAMIC_SLOTS */
-                    , ["show"])])];
+                    , ["show"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+                      href: _ctx.route('admin.contacts.pdf', contact.id),
+                      target: "_blank",
+                      "class": "bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded-lg text-white"
+                    }, " Factura", 8
+                    /* PROPS */
+                    , _hoisted_30)])];
                   }),
                   _: 2
                   /* DYNAMIC */
