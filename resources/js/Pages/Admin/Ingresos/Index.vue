@@ -15,8 +15,16 @@
                     >
                         <div class="w-full overflow-x-auto">
                             <h1 class="p-2 text-3xl font-bold">
-                                Ingreso Total por mes
+                                Ingreso Total Mes
                             </h1>
+                            <!-- <div class="m-2">
+                                <input
+                                type="date"
+                                v-model="search"
+                                class="px-8 py-3 w-full md:w-44 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
+                            />
+                            </div>
+                             -->
                             <Table>
                                 <template #tableHead>
                                     <TableHead class="px-4 py-3"
@@ -60,7 +68,6 @@
                                         <input
                                             type="date"
                                             v-model="search"
-                                            placeholder="Ingrese DNI..."
                                             class="px-8 py-3 w-full md:w-44 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
                                         />
                                     </div>
