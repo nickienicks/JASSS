@@ -218,6 +218,7 @@
                 </section>
             </div>
         </div>
+        <pre hidden>{{calcularMonto}}</pre>
     </admin-layout>
 </template>
 

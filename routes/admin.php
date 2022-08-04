@@ -50,6 +50,7 @@ Route::post("pagorecibo/{persona:id}/store/{reciboingreso:monto}", [Reciboingres
 
 //cortes
 Route::get("cortes", [CortesController::class, "index"])->name("cortes.index");
+Route::get("cortes/{data}/pdf",[CortesController::class, "usePDF"])->name("cortes.pdf");
 //Historial
 Route::get("historiales", [HistorialController::class, "index"])->name("historiales.index");
 Route::get('historiales/{persona:id}/show', [HistorialController::class, 'show'])->name('historiales.show');

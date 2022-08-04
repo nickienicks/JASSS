@@ -1,25 +1,30 @@
 <template>
     <admin-layout title="Admin">
-        <template #header>
+        <template #header >
             <h2
                 class="font-semibold text-xl text-gray-800 leading-tight container"
             >
-                Deudas
+                Cortes
             </h2>
         </template>
-        <div class="py-2">
-            <div class="relative">
-            <a href="/admin/deudas/pdf" class="bg-red-500 hover:bg-red-700 px-4 py-2 my-2 rounded-lg text-white absolute right-0">Recibos</a>
+        
+            <div class=" ml-8 mt-4 relative">
+                <button
+                    onclick="window.print()"
+                    class="bg-yellow-200  print:hidden text-yellow-900 py-2 px-4 rounded shadow hover:shadow-xl hover:bg-yellow-300 duration-300"
+                    >
+                    Imprimir
+                </button>
             </div>
             <div class="container">
-                <section class="container mx-auto p-6 font-mono">
+                <section class="container mx-auto mt-4 p-6 font-mono">
                     <div
                         class="w-full mb-8 overflow-hidden bg-white rounded-lg shadow-lg"
                     >
                         <div class="p-2 m-2">
                             <div class="flex justify-between">
-                                <div class="flex-1">
-                                    <div class="relative">
+                                <div class="flex-1 print:hidden">
+                                    <div class="relative ">
                                         <div
                                             class="absolute flex items-center ml-2 h-full"
                                         >
@@ -34,7 +39,7 @@
                                         />
                                     </div>
                                 </div>
-                                <div class="flex">
+                                <div class="flex print:hidden">
                                     <select
                                         v-model="perPage"
                                         @change="getContact"
@@ -91,8 +96,10 @@
                         </div>
                     </div>
                 </section>
+            
             </div>
-        </div>
+
+        
 
         
     </admin-layout>
@@ -108,6 +115,7 @@ import Table from "../../../Components/Table.vue";
 import TableData from "../../../Components/TableData.vue";
 import TableHead from "../../../Components/TableHead.vue";
 import TableRow from "../../../Components/TableRow.vue";
+import { DeclareTypeAlias } from "../../../../../public/js/app";
 
 const props = defineProps({
     contacts: Object,
@@ -116,7 +124,6 @@ const props = defineProps({
     fechau:Object,
     lastdeudass:Object,
 });
-const deudass=ref(props.contacts.deudas);
 const dataa= ref(props.contacts.data);
 const search = ref(props.filters.search);
 

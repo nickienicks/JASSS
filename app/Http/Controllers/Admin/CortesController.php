@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Persona;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use Inertia\Inertia;
 use App\Models\Deuda;
@@ -62,4 +63,10 @@ class CortesController extends Controller
             
         ]);
     }
+    /* public function usePDF(){
+
+        $now = Carbon::now()->format('Y-M-d');
+        $pdf = PDF::loadView('libro.pdf', compact('data'));
+        return $pdf->stream();
+    } */
 }
