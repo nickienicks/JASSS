@@ -104,24 +104,33 @@
                                     </div>
                                     <div class="">
                                         <jet-label
-                                            for="medidor_id"
-                                            value="Medidor"
+                                            for="zona"
+                                            value="Zona"
                                         />
-                                        <jet-input
+                                        <select 
+                                            class=" mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                             id="medidor_id"
                                             type="text"
-                                            class="mt-1 block w-full"
-                                            v-model="form.medidor_id"
-                                            autofocus
-                                            autocomplete="medidor_id"
-                                            placeholder="Numero de medidor..."
-                                        />
+                                            placeholder="Zona..."
+                                            v-model="form.zona"
+                                            autofocus >
+                                                <option value="zona 1">Zona 1</option>
+                                                <option value="zona 2">Zona 2</option>
+                                                <option value="zona 3">Zona 3</option>
+                                                <option value="zona 4">Zona 4</option>
+                                                <option value="zona 5">Zona 5</option>
+                                                <option value="zona 6">Zona 6</option>
+                                                <option value="zona 7">Zona 7</option>
+                                                <option value="zona 8">Zona 8</option>
+                                                <option value="zona 9">Zona 9</option>
+                                                <option value="zona 10">Zona 10</option>
+                                        </select>
 
                                         <div
                                             class="text-sm text-red-400"
-                                            v-if="form.errors.medidor_id"
+                                            v-if="form.errors.zona"
                                         >
-                                            {{ form.errors.medidor_id }}
+                                            {{ form.errors.zona }}
                                         </div>
                                     </div>
                                 </div>

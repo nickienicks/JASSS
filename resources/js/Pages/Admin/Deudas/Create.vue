@@ -169,7 +169,7 @@ const mediant=ref(props.final);
 const form = useForm({
     fecha: "",
     monto: "",
-    medida_ant: props.final.medida_act,
+    medida_ant: props.final !== null ? props.final.medida_act : 0 ,
     medida_act: "",
     persona_id: props.persona.id,
 });
@@ -177,10 +177,11 @@ const vari = ref(30);
 const calcularMonto = computed(() => {
     let montoTotal;
     let montoResta ;
+    
     try {
-        let resta = parseInt(form.medida_act) - form.medida_ant;
+        let resta = parseInt(form.medida_act) - parseInt(form.medida_ant);
         if (resta <= 7) {
-            montoTotal = resta * 2;
+            montoTotal = 14;
         } else {
             if (resta > 20) {
                 montoTotal = ((resta-7) * 3 )+14;

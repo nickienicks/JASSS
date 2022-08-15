@@ -81,18 +81,18 @@
                                     </div>
                                     <div class="">
                                         <jet-label
-                                            for="medidor_id"
+                                            for="zona"
                                             value="Medidor"
                                         />
                                         <jet-input
-                                            id="medidor_id"
+                                            id="zona"
                                             type="text"
                                             class="mt-1 block w-full"
                                             disabled
-                                            v-model="form.medidor_id"
+                                            v-model="form.zona"
                                             autofocus
-                                            autocomplete="medidor_id"
-                                            placeholder="Numero de medidor..."
+                                            autocomplete="zona"
+                                            placeholder="Zona..."
                                         />
                                     </div>
                                 </div>
@@ -241,7 +241,7 @@ const form = useForm({
     lastname: props.persona.last_name,
     dni: props.persona.dni,
     direction: props.persona.direccion,
-    medidor_id: props.persona.medidor_id,
+    medidor_id: props.persona.zona,
     fecha: "",
     monto: calcularMonto,
     medida_ant: "",
@@ -262,7 +262,7 @@ const calcularMonto = computed(() => {
     try {
         let resta = parseInt(form.medida_act) - parseInt(form.medida_ant);
         if (resta <= 7) {
-            montoTotal = resta * 2;
+            montoTotal = 14;
         } else {
             if (resta > 20) {
                 montoTotal = ((resta-7) * 3 )+14;

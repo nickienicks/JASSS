@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('corte');
             $table->boolean('reconection');
             $table->string('direccion');
-            $table->string('medidor_id');
+            $table->string('zona');
             
             $table->timestamps();
         });

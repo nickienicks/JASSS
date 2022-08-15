@@ -26,7 +26,7 @@ class Deuda extends Model
             $persona1= Persona::where('id',$idper);
             /* $persona1->update(['corte'=>true,]);  */
 
-            $ults = Deuda::all()->where('persona_id',$idper)->where('monto',true);
+            $ults = Deuda::all()->where('persona_id',$idper)->where('monto',true)->where('type',false);
             $counts=count($ults);
             if($counts >= 2 ){
                $newformat=Carbon::parse($deuda->fecha);

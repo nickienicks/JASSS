@@ -41,16 +41,17 @@ class PagosController extends Controller
     public function create(Persona $persona, Deuda $deuda)
     {
         $now = Carbon::now()->format('Y-m-d');
-        
-        return Inertia::render("Admin/Pagos/Create", [
+        return Redirect::route("admin.pagos.edit",[$persona, $deuda]);
+        /* return Inertia::render("Admin/Pagos/Create", [
             'persona' => $persona,      
             'deuda' => $deuda,
             'now' => $now,
-        ]);
+        ]); */
     }
 
       public function store(Persona $persona, Deuda $deuda)
     {
+        $now = Carbon::now()->format('Y-m-d');
           Request::validate([
            'fecha' => 'required',
            'monto' => "required",
@@ -58,11 +59,11 @@ class PagosController extends Controller
         ]);
 
           Pago::create([
-           'fecha'=> Request::input('fecha'),  
-           'monto'=> Request::input('monto'),
+           'fecha'=> $now,  
+           'monto'=> $deuda->monto,
           
-           'persona_id' => Request::input('persona_id'),
-           'deuda_id' => Request::input('deuda_id'),
+           'persona_id' =>$deuda->persona_id,
+           'deuda_id' => $deuda->deuda_id,
         //    'user_id' => auth()->id(),
            
         ]);
@@ -86,13 +87,14 @@ class PagosController extends Controller
 
      public function update(Persona $persona, Deuda $deuda)
     {
+        $now = Carbon::now()->format('Y-m-d');
       $deuda->update([
           
-            'fecha'=> Request::input('fecha'),  
-            'monto'=> Request::input('monto'),
-           'medida_ant'=> Request::input('medida_ant'),
-           'medida_act'=> Request::input('medida_act'),
-           'persona_id' => Request::input('persona_id'),
+            'fecha'=> $now,  
+            'monto'=> 0,
+           'medida_ant'=> $deuda->medida_ant,
+           'medida_act'=> $deuda->medida_act,
+           'persona_id' => $deuda->persona_id,
            'user_id' => auth()->id(),
          ]);
 

@@ -17,9 +17,10 @@ class ContactController extends Controller
 
      public function index()
     {
+        $all1= Persona::get()->count();
          $perPage = Request::input('perPage')? : 5;
         
-      
+        
         return Inertia::render("Admin/Users/Index", [      
            
             'contacts' => Persona::query()->when(Request::input('search'), function ($query, $search)
@@ -41,6 +42,7 @@ class ContactController extends Controller
                         }),
 
              'filters' => Request::only(['search', 'perPage']),
+             'todos'=>$all1,
             
         ]);
         
@@ -61,9 +63,9 @@ class ContactController extends Controller
          Request::validate([
             'firstname' => "required",
             'lastname' => "required",   
-            'dni' => "required|between:8,8",
+            'dni' => "required|numeric|digits:8",
             'direction' => "required",
-            'medidor_id' => "required",
+            'zona' => "required",
         ]);
 
        Persona::create([
@@ -73,7 +75,7 @@ class ContactController extends Controller
             'corte'=>'2001-01-01',
             'reconection'=>false,
             'direccion' => Request::input('direction'),
-            'medidor_id' => Request::input('medidor_id'),
+            'zona' => Request::input('zona'),
             'user_id' => auth()->id(),
         ]);
   

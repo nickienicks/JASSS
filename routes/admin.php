@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PagosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CortesController;
 use App\Http\Controllers\Admin\ReciboingresosController;
+use App\Http\Controllers\Admin\ImprimirController;
 use App\Models\Reciboingreso;
 
 Route::get("", [HomeController::class, "index"])->name("home");
@@ -43,6 +44,9 @@ Route::get('pagos/{persona:id}/edit/{deuda:id}/pagoedit', [PagosController::clas
 Route::put("pagos/{persona:id}/update/{deuda:id}/pagoedit", [PagosController::class, 'pagoupdate'])->name('pagos.pagoupdate');
 Route::put("pagos/{persona:id}/update/{deuda:id}", [PagosController::class, 'update'])->name('pagos.update');
 Route::get("pagos/{persona:id}/view", [PagosController::class, "view"])->name("pagos.view");
+//facturas
+Route::get("imprimir", [ImprimirController::class, "index"])->name("imprimir.index");
+Route::get('imprimir/{zonas}/pdf', [ImprimirController::class, "pdf"])->name('imprimir.pdf');
 
 //recibos
 

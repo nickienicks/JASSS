@@ -34,7 +34,7 @@
                                         <input
                                             type="text"
                                             v-model="search"
-                                            placeholder="Ingrese DNI..."
+                                            placeholder="Ingrese un Nombre..."
                                             class="px-8 py-3 w-full md:w-2/6 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
                                         />
                                     </div>
@@ -103,6 +103,7 @@
 
         
     </admin-layout>
+
 </template>
 
 <script setup>
@@ -115,7 +116,7 @@ import Table from "../../../Components/Table.vue";
 import TableData from "../../../Components/TableData.vue";
 import TableHead from "../../../Components/TableHead.vue";
 import TableRow from "../../../Components/TableRow.vue";
-import { DeclareTypeAlias } from "../../../../../public/js/app";
+import DialogModal from "../../../Jetstream/DialogModal.vue";
 
 const props = defineProps({
     contacts: Object,
@@ -152,5 +153,3 @@ function getContact() {
     );
 }
 </script>
-
-<style></style>

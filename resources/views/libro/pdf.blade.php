@@ -79,18 +79,37 @@ tbody {
 @foreach ($contacts as $contact)
     @php  $aea1 = 0;
           $cort=$contact->corte;
-          $array=[];    
+          $array=[];   
+          
+          $elo= $contact->deudas;
+
+          $cortee=null;
+
+          foreach ($elo as $key => $con) {
+            if($con->type == true){
+                $cortee= $con;
+                unset($elo[$key]);
+              }
+
+          }
     @endphp
-  @foreach ($contact->deudas as $contac)
+  @foreach ($contact->deudas as $key => $contac)
         
         
           @php
-            if($contac->monto > 0){
+          
+            if($contac->monto > 0 ){
               $obj = new stdClass();
               $obj->fecha=$contac->fecha;
               $obj->monto=$contac->monto;
+              $obj->type=$contact->type;
               array_push($array,$obj);
             }
+              
+              
+            
+            
+            
           @endphp
         
   @php
@@ -145,7 +164,7 @@ tbody {
       </tr>
       <tr>
         <td>Direccion:</td>
-        <td >{{$contact->direccion}} 632 lt.5</td>
+        <td >{{$contact->direccion}}</td>
         <td></td>
         <td ></td>
       </tr>
@@ -158,7 +177,7 @@ tbody {
     </tbody>
    </table>
   </table>
-  
+ 
   <table class="border w-full mt-2">
     <thead>
       <tr class="border">
@@ -225,32 +244,65 @@ tbody {
       </tr>
      
     </tbody>
-  </table>     
+
+  </table>
+  
+  
+
+    
+  
       <table class="border-collapse w-full mt-8 mb-6">
         <thead>
           <tr class="border">
           <th >DEUDAS ANTERIORES</th>
-          <th ></th>
+            <th >
+              
+            </th>
           
           </tr>
         </thead>
+        
         <tbody>
           @php
             $arre = array_pop($array); 
           @endphp
+          @php
+          @endphp
           @foreach ($array as $arra)
             @php
               $datemdf=\Carbon\Carbon::parse($arra->fecha)->subDays(15)->translatedFormat(' F  Y');
+           
               
+            
             @endphp
-            <tr>
-              <td class="border border-slate-700 uppercase">{{$datemdf}}</td>
-              <td class="border border-slate-700  text-center ">S/. {{$arra->monto}}.00</td>
-            </tr>
+                <tr>
+                  <td class="border border-slate-700 uppercase">{{$datemdf}}</td>
+                  <td class="border border-slate-700  text-center ">S/. {{$arra->monto}}.00</td>
+                </tr>
+            
+             
+            
           @endforeach
+          @if ( $cortee )
+                @php
+                  $monttt=0;
+                  $monttt= $cortee->monto;
+                  /* @dump($contact->deudas); */
+                @endphp
+            <tr>
+              <td class="border border-slate-700 uppercase">Corte y reconección</td>
+              <td class="border border-slate-700  text-center ">S/. {{$cortee->monto}}.00</td>
+            </tr>
+           @else
+           @php
+             $monttt=0;
+           @endphp 
+          @endif
+     
           <tr>
+           
             <td id="padi" class="border border-slate-700 text-right  ">Total</td>
-            <td id="corte" class="border border-slate-700  text-center ">S/. {{$aea1 - $contac->monto}}.00</td>
+            <td id="corte" class="border border-slate-700  text-center ">S/. {{$aea1 - $contac->monto + $monttt}}.00</td>
           </tr>
         </tbody>
       </table>
@@ -285,7 +337,7 @@ tbody {
         
         <td class="text-center">{{$date4}}</td>
         <td class=" text-center "> {{$date5}}</td>
-        <td id="corte2" class="text-right">S/. {{$aea1}}.00</td>
+        <td id="corte2" class="text-right">S/. {{$aea1+ $monttt}}.00</td>
       </tr>
        <tr>
         <td class="">.</td>
@@ -332,7 +384,14 @@ tbody {
   </table>
       </div>   
       
+      @php
+        $cortee=null;
+      @endphp
+
       @endif
+
+      
+    
       @endforeach
 
       @if($loop->last)
@@ -340,6 +399,10 @@ tbody {
       @else
           <div style="page-break-after:always;"></div>
       @endif
+
+      
+
+
     @endforeach
      
     

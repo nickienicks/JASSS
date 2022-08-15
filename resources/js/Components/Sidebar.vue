@@ -103,6 +103,15 @@
                     <DatabaseIcon class="h-6 w-6" />
                 </template>
             </Prueba>
+            <Prueba
+                :href="route('admin.imprimir.index')"
+                label="Imprimir Facturas"
+                :active="route().current('admin.imprimir.*')"
+            >
+                <template #logo>
+                    <DatabaseIcon class="h-6 w-6" />
+                </template>
+            </Prueba>
             
             <div class=" w-full">
                 <button class="absolute bottom-0 w-full  flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-500 hover:bg-opacity-25 hover:text-gray-100" @click="modalOpen =true ">

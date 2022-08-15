@@ -27,7 +27,7 @@ class SuccessfulLogin
     public function handle(Login $event):void
     {
         $today1=Carbon::today();
-        $prueba=DB::table('personas')->where('corte','<',$today1)->get();
+        $prueba=DB::table('personas')->where('corte','<',$today1)->where('corte','>','2005-01-01')->get();
         
         if(sizeof($prueba) > 0){
 

@@ -21,7 +21,7 @@ class CortesController extends Controller
 
        // $datetoday=Carbon::now();
 
-        $contar=Persona::where('corte','<=',Carbon::now()->format('Y-m-d'))->where('corte','>=','2005-01-01');
+        $contar=Persona::where('corte','<=',Carbon::now()->format('Y-m-d'))->where('corte','>','2005-01-01');
        // $contar2=$contar->where('corte',);
         /* ->whereHas('deudas', function ($query) {
             $query->latest('id')->first();

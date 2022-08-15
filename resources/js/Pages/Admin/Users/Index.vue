@@ -4,7 +4,7 @@
             <h2
                 class="font-semibold text-xl text-gray-800 leading-tight container"
             >
-                Usuarios
+                Usuarios ({{props.todos}})
             </h2>
         </template>
         <div class="py-2">
@@ -35,7 +35,7 @@
                                         <input
                                             type="text"
                                             v-model="search"
-                                            placeholder="Ingrese DNI..."
+                                            placeholder="Ingrese Nombre..."
                                             class="px-8 py-3 w-full md:w-2/6 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
                                         />
                                     </div>
@@ -134,6 +134,7 @@
                                                         method="delete"
                                                         as="button"
                                                         type="button"
+                                                        @click="modalOpen=false"
                                                         class="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-lg text-white"
                                                     >
                                                         Eliminar
@@ -151,7 +152,8 @@
                                                      )
                                                 "
                                                 target="_blank"
-                                             class="bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded-lg text-white"> Factura</a>
+                                             class="bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded-lg text-white"> Factura
+                                             </a>
                                         </div>
                                     </TableData>
                                 </TableRow>
@@ -161,6 +163,7 @@
                 </section>
             </div>
         </div>
+        <Pagination class="mt-6" :links ="contacts.links" />
     </admin-layout>
 </template>
 
@@ -175,10 +178,12 @@ import TableData from "../../../Components/TableData.vue";
 import TableHead from "../../../Components/TableHead.vue";
 import TableRow from "../../../Components/TableRow.vue";
 import DialogModal from "../../../Jetstream/DialogModal.vue";
+import Pagination from '../../../Components/Pagination';
 
 const props = defineProps({
     contacts: Object,
     filters: Object,
+    todos: Object,
 });
 
 const search = ref(props.filters.search);

@@ -29,6 +29,7 @@
         "@headlessui/vue": "^1.5.0",
         "@heroicons/vue": "^1.0.6",
         "@vueform/multiselect": "^2.3.3",
+        "autoprefixer": "10.4.5",
         "vue-multiselect": "^3.0.0-alpha.2"
     }
 }

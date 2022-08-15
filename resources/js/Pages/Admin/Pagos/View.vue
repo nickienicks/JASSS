@@ -70,7 +70,11 @@
                                                     v-if="deuda.monto === 0"
                                                 ></template>
                                                 <template v-else>
-                                                    <TableData>{{
+                                                    <TableData v-if=" deuda.type == 1">
+                                                        Corte y Reconección
+                                                    </TableData>
+                                                    <TableData v-else>{{
+
                                                         deuda.fecha
                                                     }}</TableData>
                                                     <TableData>{{
@@ -138,7 +142,7 @@
                                                 CENTRO POBLADO "ALEGRIA"
                                             </h1>
                                             <h1 class="text-3xl font-bold">
-                                                RECIBO DE INGRESPO
+                                                RECIBO DE INGRESO
                                             </h1>
                                         </div>
                                         <div class="flex flex-col">
@@ -213,7 +217,7 @@
                                                 <div class="my-4">
                                                     <input type="checkbox" />
                                                     <label for=""
-                                                        >Cuota Menssual</label>
+                                                        >Cuota Mensual</label>
                                                 
                                                 </div>
                                                 <div class="my-6">
@@ -288,7 +292,7 @@
                             <div
                                 class="bg-white flex justify-around border border-2 border-sky-500 mx-2 h-24"
                             >
-                                <p>Sello y firma del presidente</p>
+                                <p>Sello y firma del Tesorero</p>
                                 <p>Sello y firma del presidente></p>
                             </div>
                             <div class="flex ml-6">
@@ -296,7 +300,7 @@
                             onclick="window.print()"
                             class="bg-yellow-200 print:hidden text-yellow-900 py-2 px-4 rounded shadow hover:shadow-xl hover:bg-yellow-300 duration-300"
                         >
-                            Print This Page
+                            Imprimir
                         </button>
                         <button
                             @click="Open"
