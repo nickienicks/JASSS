@@ -161,9 +161,10 @@
                         </div>
                     </div>
                 </section>
+                <Pagination :todo="todos" :pagination="contacts"  /> 
             </div>
         </div>
-        <Pagination class="mt-6" :links ="contacts.links" />
+        
     </admin-layout>
 </template>
 

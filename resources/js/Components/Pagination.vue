@@ -1,18 +1,54 @@
 <template>
-  <div v-if="links.length > 3">
-    <div class="flex flex-wrap -mb-1">
-      <template v-for="(link, k) in links" :key="k">
-        <div v-if="link.url === null"  class="mr-1 mb-1 px-4 py-3 text-sm leading-4 text-gray-400 border rounded" v-html="link.label" />
-        <inertia-link v-else class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500" :class="{ 'bg-blue-700 text-white': link.active }" :href="link.url" v-html="link.label" />
-      </template>
+  <div v-if="pagination.links.length > 3" class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    <div class="flex-1 flex justify-between sm:hidden">
+      <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Previous </a>
+      <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"> Next </a>
+    </div>
+    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+      <div>
+        <p class="text-sm text-gray-700">
+          Mostrando
+          <span class="font-medium">{{pagination.from}}</span>
+          hasta
+          <span class="font-medium">{{pagination.to}}</span>
+          de
+          <span class="font-medium">{{todo}}</span>
+          resultados
+        </p>
+      </div>
+      <div>
+        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+          
+          <template v-for="(link,key) in pagination.links">
+            <div :key="key" v-if="link.url == null" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" v-html="link.label">
+
+            </div>
+            <Link 
+            :key="'link-' + key" 
+            v-else 
+            :href="link.url" 
+            
+            class="relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+            :class="link.active ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600' : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'" v-html="link.label">
+            
+            </Link>
+          </template>
+         
+          <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
+          
+         <!--  <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 2 </a> -->
+          
+        </nav>
+      </div>
     </div>
   </div>
 </template>
-  
-<script>
-export default {
-  props: {
-    links: Array,
-  },
-}
-</script> 
+<script setup>
+import { Link } from "@inertiajs/inertia-vue3";
+  const props = defineProps({
+    pagination: Object,
+    todo:Object,
+    
+});
+
+</script>
