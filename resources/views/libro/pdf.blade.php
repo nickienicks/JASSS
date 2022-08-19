@@ -159,7 +159,7 @@ tbody {
       <tr>
         <td>Apellidos:</td>
         <td > {{$contact->last_name}}</td>
-        <td></td>
+        <td>Zona: {{$contact->zona}}</td>
         <td></td>
       </tr>
       <tr>
@@ -326,9 +326,9 @@ tbody {
       </tr>
       <tr>
         @php
-         $date4=\Carbon\Carbon::parse($deuda->fecha)->translatedFormat('d F  Y');
+         $date4=\Carbon\Carbon::parse($contac->fecha)->translatedFormat('d F  Y');
          if($cort = '2001-01-01'){
-          $date5=\Carbon\Carbon::parse($deuda->fecha)->addDays(10)->modify('last day of this month')->translatedFormat('d F  Y');
+          $date5=\Carbon\Carbon::parse($contac->fecha)->addDays(10)->modify('last day of this month')->translatedFormat('d F  Y');
          
          }else{
           $date5=\Carbon\Carbon::parse($cort)->translatedFormat('d F  Y');

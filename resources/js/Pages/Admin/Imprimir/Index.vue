@@ -4,7 +4,7 @@
             <h2
                 class=" leading-tight container"
             >
-                Deudas
+                Imprimir Facturas
             </h2>
         </template>
         <section class=" ml-4 mt-4">
