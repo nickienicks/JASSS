@@ -88,17 +88,8 @@ class PagosController extends Controller
      public function update(Persona $persona, Deuda $deuda)
     {
         $now = Carbon::now()->format('Y-m-d');
-        Pago::create([
-            'fecha'=> $now,  
-            'monto'=> $deuda->monto,
-           
-            'persona_id' =>$deuda->persona_id,
-            'deuda_id' => $deuda->id,
-         //    'user_id' => auth()->id(),
-            
-         ]);
-
-      $deuda->update([
+        $es= $deuda->monto;
+        $deuda->update([
           
             'fecha'=> $now,  
             'monto'=> 0,
@@ -107,6 +98,17 @@ class PagosController extends Controller
            'persona_id' => $persona->id,
            'user_id' => auth()->id(),
          ]);
+        Pago::create([
+            'fecha'=> $now,  
+            'monto'=> $es,
+           
+            'persona_id' =>$deuda->persona_id,
+            'deuda_id' => $deuda->id,
+         //    'user_id' => auth()->id(),
+            
+         ]);
+
+      
 
     
           return Redirect::route("admin.pagos.view",[$persona->id])->with('flash.banner', 'Pago Realizado');
