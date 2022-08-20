@@ -66,7 +66,7 @@
                     <div>
                         <Link
                             :href="
-                                route('admin.pagos.pagoedit', [
+                                route('admin.pagos.view', [
                                     persona.id,
                                     deuda.id,
                                 ])
@@ -76,6 +76,7 @@
                             Regresar
                         </Link>
                         <jet-button class="mx-4"> Confirmar Pago </jet-button>
+                        
                         <a
                             class="bg-amber-500 hover:bg-amber-700 px-4 py-2 rounded-lg text-white"
                             :href="

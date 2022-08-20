@@ -30905,7 +30905,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
-        href: _ctx.route('admin.pagos.pagoedit', [$props.persona.id, $props.deuda.id]),
+        href: _ctx.route('admin.pagos.view', [$props.persona.id, $props.deuda.id]),
         "class": "bg-green-500 hover:bg-green-700 px-4 py-2 rounded-lg text-white"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

@@ -75,8 +75,8 @@ class PagosController extends Controller
 
         public function edit(Persona $persona, Deuda $deuda)
     {
-        
-        $pago = Pago::latest('id')->first();
+        $pago=0;
+        /* $pago = Pago::latest('id')->first(); */
         return Inertia::render('Admin/Pagos/Edit', [
               'persona' => $persona,
               'deuda' => $deuda,
@@ -88,6 +88,16 @@ class PagosController extends Controller
      public function update(Persona $persona, Deuda $deuda)
     {
         $now = Carbon::now()->format('Y-m-d');
+        Pago::create([
+            'fecha'=> $now,  
+            'monto'=> $deuda->monto,
+           
+            'persona_id' =>$deuda->persona_id,
+            'deuda_id' => $deuda->id,
+         //    'user_id' => auth()->id(),
+            
+         ]);
+
       $deuda->update([
           
             'fecha'=> $now,  
@@ -98,16 +108,7 @@ class PagosController extends Controller
            'user_id' => auth()->id(),
          ]);
 
-    Pago::create([
-            'fecha'=> $now,  
-            'monto'=> $deuda->monto,
-           
-            'persona_id' =>$deuda->persona_id,
-            'deuda_id' => $deuda->id,
-         //    'user_id' => auth()->id(),
-            
-         ]);
-
+    
           return Redirect::route("admin.pagos.view",[$persona->id])->with('flash.banner', 'Pago Realizado');
     }
 
