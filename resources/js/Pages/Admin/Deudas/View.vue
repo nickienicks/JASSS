@@ -62,7 +62,13 @@
                                         v-if="deuda.monto === 0"
                                     ></template>
                                     <template v-else>
-                                        <TableData>{{ deuda.fecha }}</TableData>
+                                        <TableData v-if=" deuda.type == 1">
+                                                        Corte y Reconección
+                                                    </TableData>
+                                                    <TableData v-else>{{
+
+                                                        deuda.fecha
+                                                    }}</TableData>
                                         <TableData>{{
                                             deuda.medida_ant
                                         }}</TableData>

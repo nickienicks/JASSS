@@ -93,7 +93,7 @@
                                                         <Link
                                                             :href="
                                                                 route(
-                                                                    'admin.pagos.create',
+                                                                    'admin.pagos.edit',
                                                                     [
                                                                         persona.id,
                                                                         deuda.id,
