@@ -63,7 +63,7 @@
                                     ></template>
                                     <template v-else>
                                         <TableData v-if=" deuda.type == 1">
-                                                        Corte y Reconección
+                                                        Corte y Reconexión
                                                     </TableData>
                                                     <TableData v-else>{{
 

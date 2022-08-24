@@ -194,7 +194,7 @@ tbody {
         
         $all=$contac->medida_act - $contac->medida_ant;
           if( $all <= 7 ){
-            $montoe1=$all*2;
+            $montoe1=14;
           }else{
               $montoe1=14;
               
@@ -290,7 +290,7 @@ tbody {
                   /* @dump($contact->deudas); */
                 @endphp
             <tr>
-              <td class="border border-slate-700 uppercase">Corte y reconección</td>
+              <td class="border border-slate-700 uppercase">Corte y reconexión</td>
               <td class="border border-slate-700  text-center ">S/. {{$cortee->monto}}.00</td>
             </tr>
            @else
@@ -320,11 +320,11 @@ tbody {
     </thead>        
     <tbody class="border text-xl">
       <tr>
-        <td class="">.</td>
+        <td  ><a style="visibility:hidden;">.</a></td>
         <td class=" text-center "></td>
         <td class=""></td>
       </tr>
-      <tr>
+      <tr style=" height:150px; ">
         @php
          $date4=\Carbon\Carbon::parse($contac->fecha)->translatedFormat('d F  Y');
          if($cort = '2001-01-01'){
@@ -335,15 +335,16 @@ tbody {
          }
         @endphp
         
-        <td class="text-center">{{$date4}}</td>
+        <td class="text-center" >{{$date4}}</td>
         <td class=" text-center "> {{$date5}}</td>
         <td id="corte2" class="text-right">S/. {{$aea1+ $monttt}}.00</td>
       </tr>
-       <tr>
-        <td class="">.</td>
+      <tr>
+        <td  ><a style="visibility:hidden;">.</a></td>
         <td class=" text-center "></td>
         <td class=""></td>
-      </tr>     
+      </tr>
+       
     </tbody>
 
 
@@ -358,8 +359,8 @@ tbody {
     </thead>        
     <tbody class="mt-8">
       <tr>
-        <td class="border border-slate-700 " style="width:100%;">JASS ALEGRIA LE RECUERDA:</td>
-        <td class="border border-slate-700  text-center "></td>
+        <td class="border border-slate-700 " colspan="2" style="width:100%;">JASS ALEGRIA LE RECUERDA:</td>
+     
 
       </tr>
       <tr>
@@ -373,10 +374,12 @@ tbody {
           }else{
             $mensaje="Cancele a tiempo y evite el CORTE!!!";
           }
-          
+          if($cortee){
+            $mensaje= "SU SERVICIO ESTÁ EN CORTE";
+          }
         @endphp
-        <td id="corte" class="border uppercase border-slate-700">{{$mensaje}}</td>
-        <td class="border border-slate-700  text-center "> </td>
+        <td id="corte" class="border uppercase border-slate-700" colspan="2">{{$mensaje}}</td>
+        
       </tr>  
       
       </tr>    

@@ -66,12 +66,14 @@
                                             <TableRow
                                                 v-for="deuda in deudas"
                                                 :key="deuda.id"
-                                                ><template
+                                                >
+                                               
+                                                <template
                                                     v-if="deuda.monto === 0"
                                                 ></template>
                                                 <template v-else>
                                                     <TableData v-if=" deuda.type == 1">
-                                                        Corte y Reconección
+                                                        Corte y Reconexión
                                                     </TableData>
                                                     <TableData v-else>{{
 
@@ -109,6 +111,23 @@
                                                     </table-data>
                                                 </template>
                                             </TableRow>
+                                            <Table-row class=" bg-gray-200">
+                                                <table-data >
+                                                   Total:
+                                                </table-data>
+                                                <table-data>
+                                                    
+                                                </table-data>
+                                                <table-data>
+                                                    
+                                                </table-data>
+                                                <table-data>
+                                                    {{props.suma}}
+                                                </table-data>
+                                                <table-data>
+                                                    
+                                                </table-data>
+                                            </Table-row>
                                         </Table>
                                     </div>
                                 </div>
@@ -297,17 +316,55 @@
                             </div>
                             <div class="flex ml-6">
                         <button
+                        type="button"
                             onclick="window.print()"
                             class="bg-yellow-200 print:hidden text-yellow-900 py-2 px-4 rounded shadow hover:shadow-xl hover:bg-yellow-300 duration-300"
                         >
                             Imprimir
                         </button>
                         <button
+                            type="button"
                             @click="Open"
                             class="ml-6 bg-yellow-200 print:hidden text-yellow-900 py-2 px-4 rounded shadow hover:shadow-xl hover:bg-yellow-300 duration-300"
                         >
                             Cancelar
                         </button>
+
+                        <!-- <Button @click="modalOpen = true" type="button" class="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-lg text-white">Registrar Pago</Button>
+                        <DialogModal :show="modalOpen">
+                            <template v-slot:title>
+                                <h1>Registrar Pago</h1>
+                            </template>
+                            <template v-slot:content>
+                                <p>¿Seguro que deseas realizar este pago?</p>
+                            </template>
+                            <template v-slot:footer>
+                                <button @click="modalOpen=false" class="bg-blue-500 mr-4 py-2 px-4 rounded shadow hover:shadow-xl hover:bg-blue-300">
+                                    Cancelar
+                                </button> 
+                                <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" 
+                                        type="submit"
+                                        :form="form"
+                                        @click="modalOpen=false"
+                                        >
+                                        2
+                                </button>
+                                <jet-button
+                                    
+                                    class="ml-4 print:hidden"
+                                    :class="{
+                                        'opacity-25': form.processing,
+                                    }"
+                                    :disabled="form.processing"
+                                    @click="modalOpen=false"
+                                >
+                                    Registrar Pago
+                                </jet-button>
+                                    
+                               
+                            </template>
+
+                        </DialogModal> -->
                         <jet-button
                                 class="ml-4 print:hidden"
                                 :class="{
@@ -317,7 +374,11 @@
                             >
                                 Registrar Pago
                         </jet-button>
-                        
+                        <a :href="route('admin.contacts.pdf', 
+                                props.persona.id )"
+                        target="_blank"
+                        class="inline-flex print:hidden items-center ml-6 px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-600 active:bg-gray-700 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"> Factura
+                        </a>
                     </div>
                             
                             
@@ -341,6 +402,7 @@ import JetButton from "@/Jetstream/Button.vue";
 import JetInput from "@/Jetstream/Input.vue";
 import JetLabel from "@/Jetstream/Label.vue";
 import { ref, watch, defineProps } from "vue";
+import DialogModal from "../../../Jetstream/DialogModal.vue";
 import { useForm,Link } from "@inertiajs/inertia-vue3";
 const props = defineProps({
     persona: Object,
@@ -348,11 +410,21 @@ const props = defineProps({
     suma: Object,
 });
 const montoPagado= ref("");
-
+/* const deudast= props.deudas; */
+const sumtt=ref(0);
+const modalOpen=ref(false);
 const open = ref(false);
 function Open() {
     open.value = !open.value;
 }
+
+/* function calculartt(){
+    deudast.forEach(deuda => {
+        sumtt=deuda.monto +sumtt;
+    });
+    return sumtt;
+} */
+
 const form= useForm({
     monto:"",
     fecha:"",
