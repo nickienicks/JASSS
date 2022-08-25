@@ -151,7 +151,7 @@
                         </h1>
                     </div>
                     <section class="container mx-auto font-mono">
-                        <form @submit.prevent="storePagosBoleta">
+                        <form id="formu" @submit.prevent="storePagosBoleta">
                             <div class="w-auto bg-white rounded-lg shadow-lg mx-2">
                                 <div class="w-full">
                                     <div class="flex justify-around">
@@ -331,40 +331,32 @@
                         </button>
 
                         <!-- <Button @click="modalOpen = true" type="button" class="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-lg text-white">Registrar Pago</Button>
-                        <DialogModal :show="modalOpen">
-                            <template v-slot:title>
-                                <h1>Registrar Pago</h1>
-                            </template>
-                            <template v-slot:content>
-                                <p>¿Seguro que deseas realizar este pago?</p>
-                            </template>
-                            <template v-slot:footer>
-                                <button @click="modalOpen=false" class="bg-blue-500 mr-4 py-2 px-4 rounded shadow hover:shadow-xl hover:bg-blue-300">
-                                    Cancelar
-                                </button> 
-                                <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition" 
-                                        type="submit"
-                                        :form="form"
-                                        @click="modalOpen=false"
-                                        >
-                                        2
-                                </button>
-                                <jet-button
-                                    
-                                    class="ml-4 print:hidden"
-                                    :class="{
-                                        'opacity-25': form.processing,
-                                    }"
-                                    :disabled="form.processing"
-                                    @click="modalOpen=false"
-                                >
-                                    Registrar Pago
-                                </jet-button>
-                                    
-                               
-                            </template>
+                            <template>
+                            <modal :show="modalOpen" max-width="2xl" closeable="true" @close="close">
+                                <div class="px-6 py-4">
+                                    <div class="text-lg">
+                                        
+                                    </div>
 
-                        </DialogModal> -->
+                                    <div class="mt-4">
+                                        <jet-button
+                                class="ml-4 print:hidden"
+                                :class="{
+                                    'opacity-25': form.processing,
+                                }"
+                                :disabled="form.processing"
+                                @click="modalOpen = false"
+                            >
+                                Registrar Pago
+                        </jet-button>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-row justify-end px-6 py-4 bg-gray-100 text-right">
+                                    
+                                </div>
+                            </modal>
+                        </template> -->
                         <jet-button
                                 class="ml-4 print:hidden"
                                 :class="{
@@ -404,6 +396,11 @@ import JetLabel from "@/Jetstream/Label.vue";
 import { ref, watch, defineProps } from "vue";
 import DialogModal from "../../../Jetstream/DialogModal.vue";
 import { useForm,Link } from "@inertiajs/inertia-vue3";
+
+ import { defineComponent } from 'vue';
+    import Modal from '@/Jetstream/Modal.vue';
+
+
 const props = defineProps({
     persona: Object,
     deudas: Object,
@@ -414,6 +411,9 @@ const montoPagado= ref("");
 const sumtt=ref(0);
 const modalOpen=ref(false);
 const open = ref(false);
+function close() {
+                this.$emit('close')
+        }
 function Open() {
     open.value = !open.value;
 }

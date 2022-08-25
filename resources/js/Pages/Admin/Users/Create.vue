@@ -63,10 +63,11 @@
 
                                     <div class="">
                                         <jet-label for="dni" value="DNI" />
-                                        <jet-input
+                                        <input
+                                            class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                            maxlength="8"
                                             id="dni"
                                             type="text"
-                                            class="mt-1 block w-full"
                                             v-model="form.dni"
                                             autofocus
                                             autocomplete="dni"
@@ -164,6 +165,7 @@ import { SearchIcon } from "@heroicons/vue/outline";
 import JetButton from "@/Jetstream/Button.vue";
 import JetInput from "@/Jetstream/Input.vue";
 import JetLabel from "@/Jetstream/Label.vue";
+import Inputm from "../../../Components/Inputm.vue";
 import { useForm, Link } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({});
