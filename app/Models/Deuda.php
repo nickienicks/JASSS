@@ -21,6 +21,8 @@ class Deuda extends Model
     }
     protected static function booted(){
         static::created(function($deuda){
+            
+            if($deuda->type == false){
 
             $idper= $deuda->persona_id;
             $persona1= Persona::where('id',$idper);
@@ -40,6 +42,7 @@ class Deuda extends Model
                // $days= date('d-m-Y', $deuda->fecha->addWeek());
                 $persona1->update(['corte'=>$newformat2]); 
             }
+        }
 
         });
     }
