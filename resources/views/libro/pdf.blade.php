@@ -130,7 +130,7 @@ tbody {
           Mes Facturado:
           <br>
           @php
-            $date3=\Carbon\Carbon::parse($deuda->fecha)->translatedFormat(' F  Y');
+            $date3=\Carbon\Carbon::parse($contac->fecha)->subDays(10)->translatedFormat(' F  Y');
           @endphp
           {{-- {{date('M',strtotime($contac->fecha))}} --}}
           {{$date3}}

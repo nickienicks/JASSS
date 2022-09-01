@@ -28,7 +28,7 @@ class Deuda extends Model
 
             $ults = Deuda::all()->where('persona_id',$idper)->where('monto',true)->where('type',false);
             $counts=count($ults);
-            if($counts >= 2 ){
+            if($counts >= 1 ){
                $newformat=Carbon::parse($deuda->fecha);
                $newformat2=$newformat->addWeeks(2);
                $newformat3=$newformat2->modify('last day of this month');
