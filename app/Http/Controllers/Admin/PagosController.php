@@ -20,7 +20,8 @@ class PagosController extends Controller
         return Inertia::render("Admin/Pagos/Index", [
              'personas' => Persona::query()->when(Request::input('search'), function ($query, $search)
                                 {
-                                    $query->where('first_name', 'like', "%{$search}%");
+                                    $query->where('first_name', 'like', "%{$search}%")
+                                    ->orWhere('last_name', 'like', "%{$search}%") ;
                                 })
                                 ->latest('id')
                                 ->paginate($perPage)
