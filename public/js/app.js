@@ -29116,7 +29116,7 @@ var _hoisted_2 = {
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mt-4 ml-6"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "bg-zinc-500 hover:bg-zinc-700 px-4 py-2 rounded-lg text-white",
+  "class": "bg-red-500 hover:bg-red-700 px-4 py-2 rounded-lg text-white",
   href: "/admin/deudas/pdf",
   target: "_blank"
 }, "Imprimir Facturas ")], -1

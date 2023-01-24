@@ -136,9 +136,10 @@ class DeudasController extends Controller
         $now = Carbon::now()->format('Y-M-d');
         $deuda = Deuda::latest('id')->first();
        /*  $contacts = Persona::with('deudas')->get(); */
-        $contacts= Persona::with(['deudas' => function($query) {
+        $contacts = Persona::whereHas('deudas', function($query) {
             $query->where('monto','>','0')->orderBy('fecha');
-        }])->get();
+        })->get();
+
         $pdf = PDF::loadView('libro.pdf', compact('contacts', 'deuda','now'));
 
         /* return $contacts3; */

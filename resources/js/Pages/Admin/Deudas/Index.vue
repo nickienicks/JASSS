@@ -10,7 +10,7 @@
         <div class="py-2">
             <div class="mt-4 ml-6">
                 <a
-                    class="bg-zinc-500 hover:bg-zinc-700 px-4 py-2 rounded-lg text-white"
+                    class="bg-red-500 hover:bg-red-700 px-4 py-2 rounded-lg text-white"
                     href="/admin/deudas/pdf"
                     target="_blank"
                     >Imprimir Facturas
